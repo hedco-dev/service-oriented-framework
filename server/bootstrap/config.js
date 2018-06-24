@@ -1,4 +1,5 @@
 const configFolder = global.rootPath + '/config/';
+const path = require('path');
 module.exports = new Promise((resolve, reject) => {
     var config = {};
     global.utils.directory.getFiles({
@@ -8,7 +9,8 @@ module.exports = new Promise((resolve, reject) => {
     }, (err, files) => {
         if (err) reject(err);
         files.forEach(file => {
-            config = Object.assign(config, require(file));
+            const configName = path.basename(file, ".js");
+            config = Object.assign(config,{[configName]: require(file)});
         });
         global.config = config;
         resolve(config);
