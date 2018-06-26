@@ -8,16 +8,21 @@ global.rootPath = __dirname;
 require('./bootstrap')
   .then(() => {
     app.listen(global.config.http.port, () => {
-      clear();
+      // clear();
+      // logger.log(
+      //   chalk.red(
+      //     figlet.textSync(' ')
+      //   )
+      // );
       logger.log(
         chalk.red(
-          figlet.textSync('MAGIC', {
+          figlet.textSync(' magic', {
             horizontalLayout: 'full',
-            font: 'poison'
+            font: 'standard'
           })
         )
       );
-      logger.log(chalk.red(`Server has been started on ${global.config.http.port}`));
+      logger.log(chalk.red(`    Server has been started on ${global.config.http.port}`));
     });
   }).catch(err => {
     console.log(err);
