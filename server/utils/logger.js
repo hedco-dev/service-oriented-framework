@@ -39,7 +39,7 @@ const noop = () => { };
 // if it is, then use console.log
 // if not then noop
 var consoleLog = true ? console.log.bind(console) : noop;
-
+console.log(config);
 const logger = {
   log: function () {
     // arguments is an array like object with all the passed
