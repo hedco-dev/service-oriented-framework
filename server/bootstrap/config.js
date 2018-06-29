@@ -12,6 +12,7 @@ module.exports = new Promise((resolve, reject) => {
             const configName = path.basename(file, ".js");
             config = Object.assign(config,{[configName]: require(file)});
         });
+        config = Object.assign(config,require(`${configFolder}envs/${config.environment.env}.js`));
         global.config = config;
         resolve(config);
     });

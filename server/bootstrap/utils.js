@@ -1,7 +1,7 @@
 const utilsFolder = global.rootPath + '/utils/';
 const fs = require("fs");
 
-module.exports = new Promise((resolve, reject) => {
+module.exports = new Promise((resolve) => {
     fs.readdirSync(utilsFolder).forEach((util) => {
         require(utilsFolder + util);
     });
