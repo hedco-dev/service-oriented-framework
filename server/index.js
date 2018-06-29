@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 const chalk = require('chalk');
 const figlet = require('figlet');
-const clear = require('clear');
+const middlewares = require('./middlewares');
+//const clear = require('clear');
 
 global.rootPath = __dirname;
 require('./bootstrap')
   .then(() => {
+    middlewares(app);
     app.listen(global.config.http.port, () => {
       console.log(
         chalk.red(
