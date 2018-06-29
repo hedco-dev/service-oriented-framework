@@ -8,7 +8,7 @@ global.rootPath = __dirname;
 require('./bootstrap')
   .then(() => {
     app.listen(global.config.http.port, () => {
-      logger.log(
+      console.log(
         chalk.red(
           figlet.textSync(' magic', {
             horizontalLayout: 'full',
@@ -18,8 +18,9 @@ require('./bootstrap')
       );
       logger.info(chalk.white(`Environment: ${config.environment.env}`));
       logger.info(chalk.white(`Start Date:  ${new Date()}`));
+      logger.warning(`Framework Version:  ${config.environment.version}`);
       logger.success(chalk.white(`Server has been started on ${config.http.port}`));
     });
   }).catch(err => {
-    logger.error(err);
+    console.log(err);
   });
