@@ -12,7 +12,7 @@ require('./bootstrap')
     app.listen(global.config.http.port, () => {
       console.log(
         chalk.red(
-          figlet.textSync(' magic', {
+          figlet.textSync('magic', {
             horizontalLayout: 'full',
             font: 'standard'
           })
