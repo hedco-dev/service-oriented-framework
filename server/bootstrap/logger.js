@@ -1,5 +1,5 @@
-const loggerService = global.rootPath + '/utils/logger';
+const loggerService = magic.rootPath + '/utils/logger';
 module.exports = new Promise((resolve) => {   
-        global.logger = require(loggerService);
+        global.magic.logger = require(loggerService);
         resolve();
 });

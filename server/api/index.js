@@ -1,6 +1,6 @@
 const express = require('express');
 const { lstatSync, readdirSync } = require('fs');
-const { join, basename, resolve } = require('path');
+const { join, basename } = require('path');
 const includeAll = require('include-all');
 const isDirectory = source => lstatSync(source).isDirectory();
 const findController = (path) => includeAll({
@@ -17,7 +17,7 @@ const bindRoutes = (funcName, controller, controllerRouter) => {
     });
 };
 module.exports = (app) => {
-    const apiPath = global.rootPath + '/api';
+    const apiPath = magic.rootPath + '/api';
     readdirSync(apiPath).map(name => join(apiPath, name))
         .forEach((d) => {
             if (isDirectory(d)) {

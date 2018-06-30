@@ -1,4 +1,4 @@
-const utilsFolder = global.rootPath + '/utils/';
+const utilsFolder = magic.rootPath + '/utils/';
 const fs = require("fs");
 
 module.exports = new Promise((resolve) => {

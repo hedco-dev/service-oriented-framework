@@ -1,5 +1,6 @@
-const configFolder = global.rootPath + '/config/';
+const configFolder = magic.rootPath + '/config/';
 const path = require('path');
+global.magic = global.magic || {};
 module.exports = new Promise((resolve, reject) => {
     var config = {};
     global.utils.directory.getFiles({
@@ -13,7 +14,7 @@ module.exports = new Promise((resolve, reject) => {
             config = Object.assign(config,{[configName]: require(file)});
         });
         config = Object.assign(config,require(`${configFolder}envs/${config.environment.env}.js`));
-        global.config = config;
+        global.magic.config = config;
         resolve(config);
     });
 });

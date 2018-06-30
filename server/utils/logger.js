@@ -32,7 +32,7 @@ const options = {
 const customLogger = new Signale(options);
 const logger = {
   log: (...args) => {
-    const logEnabled = config && config.consoleLog;
+    const logEnabled = magic.config.consoleLog;
     if (logEnabled) {
       const type = args.length > 1 && args[args.length - 1];
       if (type && types[type]) {
