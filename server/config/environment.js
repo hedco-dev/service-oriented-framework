@@ -1,7 +1,7 @@
 const envs = Object.freeze({
     "development": "development",
     "test": "test",
-    "produnction": "produnction"
+    "production": "production"
 });
 
 module.exports = {
