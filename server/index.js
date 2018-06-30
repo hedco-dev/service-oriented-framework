@@ -3,12 +3,13 @@ const app = express();
 const chalk = require('chalk');
 const figlet = require('figlet');
 const middlewares = require('./middlewares');
+const apis = require('./api');
 //const clear = require('clear');
-
 global.rootPath = __dirname;
 require('./bootstrap')
-  .then(() => {
+.then(() => {
     middlewares(app);
+    apis(app);
     app.listen(global.config.http.port, () => {
       console.log(
         chalk.red(
