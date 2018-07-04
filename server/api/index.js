@@ -1,7 +1,7 @@
-import * as express from 'express';
-const { lstatSync, readdirSync, existsSync } = require('fs');
-const { join, basename } = require('path');
-const includeAll = require('include-all');
+import express from 'express';
+import { lstatSync, readdirSync } from 'fs';
+import { join, basename } from 'path';
+import includeAll from 'include-all';
 const isDirectory = source => lstatSync(source).isDirectory();
 const findController = (path) => includeAll({
   dirname: path,
@@ -21,7 +21,7 @@ const bindRoutes = (funcName, controller, controllerRouter) => {
     }
   });
 };
-module.exports = (app) => {
+export default (app) => {
   const apiPath = magic.rootPath + '/api';
   magic.models = {};
   readdirSync(apiPath)

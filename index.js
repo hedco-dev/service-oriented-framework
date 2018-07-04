@@ -1,1 +1,4 @@
-import './server';
+import server from './server';
+(async ()=>{
+    await server();
+})();

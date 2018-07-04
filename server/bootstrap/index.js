@@ -1,7 +1,8 @@
-module.exports = require('./utils')
-    .then(() => {
-        return require('./config');
-    })
-    .then(() => {
-        return require('./logger');
-    });
+import utils from './utils';
+import config from './config';
+import logger from './logger';
+export default (async () => {
+    await utils();
+    await config();
+    await logger();
+});

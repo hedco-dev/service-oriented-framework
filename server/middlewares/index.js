@@ -1,10 +1,10 @@
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const express = require('express');
+import morgan from 'morgan';
+import { urlencoded, json } from 'body-parser';
+import express from 'express';
 // setup global middleware here
-module.exports = function(app) {
+export default (app) => {
   app.use(express.static('www'));
   app.use(morgan('dev'));
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
+  app.use(urlencoded({ extended: true }));
+  app.use(json());
 };

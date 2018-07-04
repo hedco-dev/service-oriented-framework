@@ -1,8 +1,8 @@
-var fs = require('fs');
-var path = require('path');
-var utils = global.utils || {};
+import fs from 'fs';
+import path from 'path';
+var utils = global.magic.utils || {};
 utils.directory = {
-    getFiles: function (options, done) {
+    getFiles(options, done) {
         var results = [];
         var dir = options.dir || "";
         if (!dir) {
@@ -45,4 +45,4 @@ utils.directory = {
         });
     }
 };
-global.utils = utils;
+global.magic.utils = utils;

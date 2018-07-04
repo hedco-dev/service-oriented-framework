@@ -1,14 +1,14 @@
 module.exports = {
-    getData: function (req, res) {
-        res.send('I did it get method' );
+    getData(req, res) {
+        res.send('I did it get method');
     },
-    postData: function (req, res) {
-        res.send('I did it  post' );
+    postData(req, res) {
+        res.send('I did it  post');
     },
-    deleteData: function (req, res) {
-        res.send('I did it delete' );
+    deleteData(req, res) {
+        res.send('I did it delete');
     },
-    putData: function (req, res) {
-        res.send('I did it put' );
+    putData(req, res) {
+        res.send('I did it put');
     }
 }
