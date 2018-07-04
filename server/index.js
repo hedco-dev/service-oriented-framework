@@ -7,7 +7,7 @@ import bootstrap from './bootstrap';
 
 const app = express();
 global.magic = global.magic || {};
-global.magic.rootPath = __dirname;
+magic.rootPath = __dirname;
 
 export default (async () => {
   await bootstrap();
