@@ -11,4 +11,4 @@ module.exports = {
     putData(req, res) {
         res.send('I did it put');
     }
-}
+};

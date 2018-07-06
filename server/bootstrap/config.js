@@ -1,9 +1,9 @@
 import path from 'path';
-export default (async () => {
-    return new Promise((resolve, reject) => {
+
+export default (async () => new Promise((resolve, reject) => {
         global.magic = global.magic || {};
-        const configFolder = magic.rootPath + '/config/';
-        var config = {};
+        const configFolder = `${magic.rootPath}/config/`;
+        let config = {};
         magic.utils.directory.getFiles({
             dir: configFolder,
             recursive: true,
@@ -11,12 +11,11 @@ export default (async () => {
         }, (err, files) => {
             if (err) reject(err);
             files.forEach(file => {
-                const configName = path.basename(file, ".js");
+                const configName = path.basename(file, '.js');
                 config = Object.assign(config, { [configName]: require(file) });
             });
             config = Object.assign(config, require(`${configFolder}envs/${config.environment.env}.js`));
             global.magic.config = config;
             resolve(config);
         });
-    })
-});
+    }));

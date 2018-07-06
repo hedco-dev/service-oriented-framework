@@ -1,4 +1,5 @@
 const { Signale } = require('signale');
+
 const types = {
   warning: {
     badge: '⚠️',
@@ -26,7 +27,7 @@ const options = {
   interactive: false,
   stream: process.stdout,
   scope: '',
-  types: types
+  types
 };
 
 const customLogger = new Signale(options);
@@ -48,10 +49,10 @@ const logger = {
   error: customLogger.error,
   warning: customLogger.warning,
   types: {
-    warning: "warning",
-    success: "success",
-    error: "error",
-    info: "info"
+    warning: 'warning',
+    success: 'success',
+    error: 'error',
+    info: 'info'
   }
 };
 module.exports = logger;

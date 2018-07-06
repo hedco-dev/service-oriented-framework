@@ -1,51 +1,27 @@
 import { MongoClient } from 'mongodb';
-var DB;
+
+let DB;
 
 exports.connect = async (url, options) => {
-    if (DB) return resolve(DB);
+    if (DB) return DB;
 
     try {
-        const client = new MongoClient();
-       // client.on('serverOpening', () =>  magic.logger.log('db has been connected sunccessfully'));
         DB = await MongoClient.connect(url, options);
-        DB.on('timeout', () => {
-            console.log('Mongo connection lost')
-          })
-          
-          DB.on('close', () => {
-            console.log('Mongo connection closed')
-          })
-          
-          DB.on('reconnect', () => {
-            console.log('Mongo reconnected')
-          })
-          
-          DB.on('timeout', () => {
-            console.log('Mongo connection lost')
-          })
-          
-          DB.on('close', () => {
-            console.log('Mongo connection closed')
-          })
-          
-          DB.on('reconnect', () => {
-            console.log('Mongo reconnected')
-          })
-       // DB.topology.on('close', () => magic.logger.log('db has been closed'));
-       // DB.topology.on('reconnect', () => magic.logger.log('db has been connected sunccessfully', magic.logger.types.warning));
+        magic.logger.log('The Mongodb connection has been connected.', magic.logger.types.success);
+        DB.on('close', () => magic.logger.log('The Mongodb connection has been closed.', magic.logger.types.warning));
+        DB.on('error', (err) => magic.logger.log('MongoDB Err', err, magic.logger.types.error));
+        DB.on('timeout', () => magic.logger.error('The Mongodb connection timeout.', magic.logger.types.error));
+        DB.on('reconnect', () => magic.logger.warning('The Mongodb connection reconnected.', magic.logger.types.warning));
         return DB;
     } catch (e) {
         magic.logger.error(e);
-        return null;
+        throw e;
     }
 };
 
-exports.get = () => {
-    return DB;
-}
+exports.get = () => DB;
 
-exports.close = (done) => {
-    return new Promise((resolve, reject) => {
+exports.close = () => new Promise((resolve, reject) => {
         if (DB) {
             DB.close((err) => {
                 if (err) return reject(err);
@@ -54,4 +30,3 @@ exports.close = (done) => {
             });
         }
     });
-};

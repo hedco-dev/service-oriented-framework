@@ -3,7 +3,8 @@ module.exports = {
         connection: 'mongodb://localhost:27017/magic',
         options: {
             useNewUrlParser: true,
-            loggerLevel: "info"
+            poolSize: 5,
+          //  loggerLevel: 'info'
         }
     }
 };
