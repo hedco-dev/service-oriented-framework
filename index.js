@@ -1,4 +1,5 @@
 import server from './server';
-(async ()=>{
+
+(async () => {
     await server();
 })();

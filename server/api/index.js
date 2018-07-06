@@ -2,6 +2,7 @@ import express from 'express';
 import { lstatSync, readdirSync } from 'fs';
 import { join, basename } from 'path';
 import includeAll from 'include-all';
+
 const isDirectory = source => lstatSync(source).isDirectory();
 const findController = (path) => includeAll({
   dirname: path,
@@ -14,7 +15,7 @@ const findModel = (path) => includeAll({
   depth: 1
 });
 const bindRoutes = (funcName, controller, controllerRouter) => {
-  const httpMothods = ["get", "post", "put", "delete"];
+  const httpMothods = ['get', 'post', 'put', 'delete'];
   httpMothods.forEach((httpMethod) => {
     if (funcName.startsWith(httpMethod)) {
       controllerRouter.route(`/${funcName.replace(httpMethod, '')}`)[httpMethod](controller[funcName]);
@@ -22,7 +23,7 @@ const bindRoutes = (funcName, controller, controllerRouter) => {
   });
 };
 export default (app) => {
-  const apiPath = magic.rootPath + '/api';
+  const apiPath = `${magic.rootPath}/api`;
   magic.models = {};
   readdirSync(apiPath)
     .map(name => join(apiPath, name))
@@ -33,8 +34,8 @@ export default (app) => {
       Object.keys(controllers)
         .filter((ctrl) => controllers[ctrl])
         .forEach((ctrl) => {
-          var rootPath = `/${folderName}`;
-          const ctrlName = ctrl.replace("Controller", "");
+          let rootPath = `/${folderName}`;
+          const ctrlName = ctrl.replace('Controller', '');
           if (ctrlName) {
             rootPath += `/${ctrlName}`;
           }
@@ -51,7 +52,7 @@ export default (app) => {
       Object.keys(models)
         .filter((model) => models[model])
         .forEach((model) => {
-          const modelName = model.replace("Model", "");
+          const modelName = model.replace('Model', '');
           if (modelName) {
             magic.models[folderName] = magic.models[folderName] || {};
             magic.models[folderName][modelName] = require(`${d}/${model}.js`);
