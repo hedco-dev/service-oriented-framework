@@ -25,6 +25,7 @@
     "figlet": "^1.2.0",
     "include-all": "^4.0.3",
     "lodash": "^4.17.10",
+    "mongodb": "^3.1.0",
     "morgan": "^1.9.0",
     "signale": "^1.2.1"
   },

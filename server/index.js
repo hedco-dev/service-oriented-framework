@@ -13,6 +13,7 @@ export default (async () => {
   await bootstrap();
   middlewares(app);
   apis(app);
+  
   app.listen(magic.config.http.port, () => {
     console.log(
       chalk.red(
