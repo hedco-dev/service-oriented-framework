@@ -2,8 +2,6 @@ import express from 'express';
 import chalk from 'chalk';
 import figlet from 'figlet';
 import http from 'http';
-import middlewares from './middlewares';
-import apis from './api';
 import bootstrap from './bootstrap';
 import { close } from './utils/db';
 
@@ -22,10 +20,8 @@ const onExitHandler = async () => {
   }
 };
 
-export default (async () => {
-  await bootstrap();
-  middlewares(app);
-  apis(app);
+export default async () => {
+  await bootstrap(app);
 
   const connect = () => {
     server.listen(magic.config.http.port, () => {
@@ -61,4 +57,4 @@ export default (async () => {
     }
   });
   connect();
-});
+};

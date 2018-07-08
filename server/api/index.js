@@ -1,5 +1,5 @@
 import express from 'express';
-import { lstatSync, readdirSync } from 'fs';
+import { lstatSync, readdirSync, existsSync } from 'fs';
 import { join, basename } from 'path';
 import includeAll from 'include-all';
 
@@ -22,7 +22,7 @@ const bindRoutes = (funcName, controller, controllerRouter) => {
     }
   });
 };
-export default (app) => {
+export default async app => new Promise((resolve) => {
   const apiPath = `${magic.rootPath}/api`;
   magic.models = {};
   readdirSync(apiPath)
@@ -48,15 +48,21 @@ export default (app) => {
         });
 
       // resolve models
-      const models = findModel(d);
+      const modelDefaultFolderPath = '/models';
+      const modelPath = d + modelDefaultFolderPath;
+      if (!existsSync(modelPath)) {
+        return;
+      }
+      const models = findModel(modelPath);
       Object.keys(models)
         .filter((model) => models[model])
         .forEach((model) => {
           const modelName = model.replace('Model', '');
           if (modelName) {
             magic.models[folderName] = magic.models[folderName] || {};
-            magic.models[folderName][modelName] = require(`${d}/${model}.js`);
+            magic.models[folderName][modelName] = require(`${modelPath}/${model}.js`).default;
           }
         });
     });
-};
+  resolve();
+});

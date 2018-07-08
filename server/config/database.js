@@ -4,7 +4,8 @@ module.exports = {
         options: {
             useNewUrlParser: true,
             poolSize: 5,
-          //  loggerLevel: 'info'
-        }
+            //  loggerLevel: 'info'
+        },
+        changeSchemaBehaviour: 'alter' // drop, alter
     }
 };

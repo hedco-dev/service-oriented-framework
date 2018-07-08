@@ -13,6 +13,7 @@ module.exports = {
         "no-underscore-dangle": "off",
         "no-useless-escape": "off",
         "no-param-reassign": "off",
-        "global-require": "off"
+        "global-require": "off",
+        "no-unused-vars": ["warn"]
     }
 };
