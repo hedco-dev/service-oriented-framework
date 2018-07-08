@@ -14,8 +14,13 @@ export default async () => {
                 .forEach(modelName => {
                     const model = magic.models[modelFolder][modelName];
                     const collectionName = plural(modelName);
-                    if (!collections.includes(collectionName)) {
+                    if (!collections.filter(e => e.name === collectionName).length > 0) {
                         db.createCollection(collectionName, { validator: model.validator });
+                    } else {
+                        db.command({
+                            collMod: collectionName,
+                            validator: model.validator
+                        });
                     }
                     model.collection = magic.database.db(dbName).collection(collectionName);
                 });

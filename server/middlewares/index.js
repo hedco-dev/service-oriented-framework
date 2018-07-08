@@ -4,7 +4,7 @@ import express from 'express';
 // setup global middleware here
 export default app => {
   app.use((req, res, next) => {
-    res.create = async (action) => {
+    res.create = async action => {
       try {
         await action();
       } catch (error) {
