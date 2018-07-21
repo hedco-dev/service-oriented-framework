@@ -43,7 +43,7 @@ export default async app => new Promise((resolve) => {
           const apis = Object.keys(controller);
 
           const controllerRouter = express.Router();
-          apis.forEach((funcName) => bindRoutes(funcName, controller, controllerRouter));
+          apis.forEach(funcName => bindRoutes(funcName, controller, controllerRouter));
           app.use(rootPath, controllerRouter);
         });
 

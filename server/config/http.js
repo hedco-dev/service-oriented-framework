@@ -1,3 +1,1 @@
-module.exports = {
-    port: 3007
-};
+export const port = 3007;

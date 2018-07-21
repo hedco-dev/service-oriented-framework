@@ -35,6 +35,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^5.0.1",
-    "eslint-config-hedco": "0.0.9"
+    "eslint-config-hedco": "0.0.9",
+    "run-rs": "^0.1.2"
   }
 }

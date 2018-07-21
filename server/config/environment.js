@@ -4,8 +4,8 @@ const envs = Object.freeze({
     production: 'production'
 });
 
-module.exports = {
+export default {
     envs,
     env: envs.development,
-    version: '0.0.1'
+    version: '0.0.5'
 };

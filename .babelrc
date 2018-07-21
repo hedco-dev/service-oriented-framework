@@ -1,5 +1,7 @@
 {
-    "presets": ["env"],
-    "retainLines": true,
-    "sourceMaps": true
-  }
+  "presets": [
+    "env"
+  ],
+  "retainLines": true,
+  "sourceMaps": true
+}

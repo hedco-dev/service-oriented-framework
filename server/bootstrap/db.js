@@ -25,4 +25,23 @@ export default async () => {
                     model.collection = magic.database.db(dbName).collection(collectionName);
                 });
         });
+
+    magic.database.startTransaction = async (action) => new Promise(async (resolve, reject) => {
+        let session;
+        try {
+            session = await magic.database.startSession();
+            await session.startTransaction({
+                readConcern: { level: 'snapshot' },
+                writeConcern: { w: 'majority' }
+            });
+            await action(session);
+            await session.commitTransaction();
+            resolve();
+        } catch (error) {
+            if (session) {
+                session.abortTransaction();
+            }
+            reject(error);
+        }
+    });
 };

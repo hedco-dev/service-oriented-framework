@@ -3,7 +3,8 @@ module.exports = {
     "globals": {
         "window": true,
         "document": true,
-        "magic": true
+        "magic": true,
+        "session": true
     },
     "rules": {
         "no-extend-native": "off",

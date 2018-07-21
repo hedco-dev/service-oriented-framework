@@ -1,3 +1,1 @@
-module.exports = {
-    consoleLog: false
-};
+export const consoleLog = false;
