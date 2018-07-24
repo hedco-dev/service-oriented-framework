@@ -1,6 +1,7 @@
 import morgan from 'morgan';
 import { urlencoded, json } from 'body-parser';
 import express from 'express';
+import path from 'path';
 // setup global middleware here
 export default app => {
   app.use((req, res, next) => {
@@ -19,4 +20,9 @@ export default app => {
   app.use(morgan('dev'));
   app.use(urlencoded({ extended: true }));
   app.use(json());
+  app.set('view engine', 'ejs');
+  app.set('views', path.join(__dirname, '..'));
+  app.get('/', (req, res) => {
+    res.render('pages/index.ejs');
+  });
 };
