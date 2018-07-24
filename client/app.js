@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware';
+import reducers from './reducers';
 
-class Message extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = { seconds: 0 };
@@ -26,4 +31,13 @@ class Message extends Component {
     }
 }
 
-render(<Message title="Majid" />, document.getElementById('root'));
+render(<App title="Majid" />, document.getElementById('root'));
+
+const store = createStore(reducers, applyMiddleware(thunk), applyMiddleware(promiseMiddleware()));
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
